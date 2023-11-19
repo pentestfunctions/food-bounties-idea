@@ -1,7 +1,7 @@
 # Business Proposal for Foodbounties.com 🍳🏆
 
 <p align="center">
-  <img src="logo.png" alt="Penetration Testing Assistant Bot Mascot">
+  <img src="logo.png" alt="Penetration Testing Assistant Bot Mascot" width="500" style="display: block; margin: 0 auto;">
 </p>
 
 ## Executive Summary
