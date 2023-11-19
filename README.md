@@ -1,5 +1,8 @@
-
 # Business Proposal for Foodbounties.com 🍳🏆
+
+<p align="center">
+  <img src="logo.png" alt="Penetration Testing Assistant Bot Mascot">
+</p>
 
 ## Executive Summary
 **Foodbounties.com** is an innovative online platform where cooking enthusiasts, from home cooks to professional chefs, can participate in recipe creation competitions. Users can place bounties on specific food items or recipes, incentivizing others to create and share their best versions. The platform aims to celebrate culinary creativity and diversity, from healthy to indulgent dishes, bridging the gap between traditional cooking and modern social media trends.
