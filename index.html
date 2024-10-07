@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodBounties.com - Culinary Creativity Unleashed</title>
+    <style>
+        :root {
+            --primary-color: #FF6B6B;
+            --secondary-color: #4ECDC4;
+            --text-color: #333333;
+            --background-color: #FFFFFF;
+            --accent-color: #FFA07A;
+            --light-gray: #f4f4f4;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon::before {
+            content: "🍳";
+            font-size: 24px;
+        }
+
+        .nav-links a {
+            margin-left: 1.5rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .hero {
+            background: url('https://i.imgur.com/fIth55h.png') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 10rem 0 6rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .cta-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-color);
+        }
+
+        .contests {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .contest-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .contest-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .contest-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .contest-details {
+            padding: 1.5rem;
+        }
+
+        .contest-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .contest-sponsor {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .contest-prize {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        .contest-countdown {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            position: absolute;
+            left: 0;
+            right: 0;
+            padding: 0.5rem;
+            text-align: center;
+        }
+
+        .winners {
+            background-color: var(--light-gray);
+        }
+
+        .winners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .winner-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .winner-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .winner-name {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .winner-recipe {
+            font-style: italic;
+            color: var(--primary-color);
+        }
+
+        .shop {
+            background-color: white;
+        }
+
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: var(--light-gray);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .product-details {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .product-price {
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .product-button {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .product-button:hover {
+            background-color: var(--primary-color);
+        }
+
+        footer {
+            background-color: var(--text-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+            .contest-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .bidders, .submissions {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        @media (max-width: 768px) {
+            .contest-stats {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+
+        .description {
+        background-color: var(--light-gray);
+        padding: 4rem 0;
+        }
+
+        .description h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+        }   
+
+        .description-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }   
+
+        .description-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }   
+
+        .description-item h2 {
+            color: var(--secondary-color);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }   
+
+        .description-item p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }   
+
+        .description-summary {
+            text-align: center;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--text-color);
+        }   
+
+        @media (max-width: 768px) {
+            .description-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                FoodBounties
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#contests">Contests</a>
+                <a href="#winners">Winners</a>
+                <a href="#shop">Shop</a>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content container">
+            <h1>Culinary Creativity Unleashed</h1>
+            <p>Join our community of food lovers, compete in exciting recipe challenges, and showcase your culinary skills to the world.</p>
+            <a href="#contests" class="cta-button">Start Cooking Today</a>
+        </div>
+    </section>
+
+    <section id="contests">
+        <div class="container">
+            <h2>Current Contests</h2>
+            <div class="contests">
+                <div class="contest-card">
+                    <div class="contest-image" style="background-image: url('https://theartisticcook.com/wp-content/uploads/2023/06/kfc-1.jpg');"></div>
+                    <div class="contest-prize">$500</div>
+                    <div class="contest-countdown">Ends in: 3 days</div>
+                    <div class="contest-details">
+                        <h3 class="contest-title">KFC-Style Chicken Challenge</h3>
+                        <p class="contest-sponsor">Sponsored by @CrispyChickenLover</p>
+                        <p>Create your best copycat KFC chicken recipe and win big!</p>
+                        <div class="contest-stats">
+                            <span class="bidders">👥 145 Bidders</span>
+                            <span class="submissions">📝 37 Submissions</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contest-card">
+                    <div class="contest-image" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFe5RfgDUnKEBgUNIXDkXByBA5MANeS_Pdag&s');"></div>
+                    <div class="contest-prize">$750</div>
+                    <div class="contest-countdown">Ends in: 5 days</div>
+                    <div class="contest-details">
+                        <h3 class="contest-title">Vegan Comfort Food Showdown</h3>
+                        <p class="contest-sponsor">Sponsored by @PlantPowerChef</p>
+                        <p>Transform classic comfort foods into delicious vegan alternatives!</p>
+                        <div class="contest-stats">
+                            <span class="bidders">👥 203 Bidders</span>
+                            <span class="submissions">📝 56 Submissions</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contest-card">
+                    <div class="contest-image" style="background-image: url('https://www.themarblekitchen.com/wp-content/uploads/2023/05/Dark-Chocolate-Brownies-5.jpg');"></div>
+                    <div class="contest-prize">$1000</div>
+                    <div class="contest-countdown">Ends in: 7 days</div>
+                    <div class="contest-details">
+                        <h3 class="contest-title">Chocolate Brownie!</h3>
+                        <p class="contest-sponsor">Sponsored by @SweetWorldTraveler</p>
+                        <p>Combine desserts from different cultures for a unique sweet treat!</p>
+                        <div class="contest-stats">
+                            <span class="bidders">👥 278 Bidders</span>
+                            <span class="submissions">📝 89 Submissions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="winners" class="winners">
+        <div class="container">
+            <h2>Recent Winners</h2>
+            <div class="winners-grid">
+                <div class="winner-card">
+                    <div class="winner-avatar" style="background-image: url('https://i.imgur.com/qDSmILC.png');"></div>
+                    <h3 class="winner-name">@SpiceMaster</h3>
+                    <p class="winner-recipe">Tandoori Fusion Tacos</p>
+                </div>
+                <div class="winner-card">
+                    <div class="winner-avatar" style="background-image: url('https://i.imgur.com/2MtS9Og.png');"></div>
+                    <h3 class="winner-name">@SushiRollQueen</h3>
+                    <p class="winner-recipe">Sushi Burrito Supreme</p>
+                </div>
+                <div class="winner-card">
+                    <div class="winner-avatar" style="background-image: url('https://i.imgur.com/UcFu31G.png');"></div>
+                    <h3 class="winner-name">@VeggieVisionaryChef</h3>
+                    <p class="winner-recipe">Cauliflower Steak Wellington</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="shop" class="shop">
+        <div class="container">
+            <h2>FoodBounties Shop</h2>
+            <div class="shop-grid">
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://i.imgur.com/PHJ8dPh.png');"></div>
+                    <div class="product-details">
+                        <h3 class="product-title">FoodBounties Supporter's Apron</h3>
+                        <p class="product-price">$29.99</p>
+                        <a href="#" class="product-button">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://m.media-amazon.com/images/I/71QLlTZdctL._AC_SL1500_.jpg');"></div>
+                    <div class="product-details">
+                        <h3 class="product-title">Professional Chef's Knife Set</h3>
+                        <p class="product-price">$89.99</p>
+                        <a href="#" class="product-button">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://factoryfast.co.nz/cdn/shop/products/4c23fd0bdb920b8d9678515c808046c6_1285x.jpg?v=1682581206');"></div>
+                    <div class="product-details">
+                        <h3 class="product-title">FoodBounties Digital Scale</h3>
+                        <p class="product-price">$24.99</p>
+                        <a href="#" class="product-button">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image" style="background-image: url('https://i.imgur.com/q3ECKZ2.png');"></div>
+                    <div class="product-details">
+                        <h3 class="product-title">Cookbook: Best of FoodBounties 2024</h3>
+                        <p class="product-price">$34.99</p>
+                        <a href="#" class="product-button">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="home" class="description">
+        <div class="hero-content container">
+            <h1>What is FoodBounties?</h1>
+            
+            <div class="description-content">
+                <div class="description-item">
+                    <h2>Preserving Culinary Treasures</h2>
+                    <p>FoodBounties is your global culinary connection, bridging the gap between professional chefs and home cooks. We're on a mission to preserve and share those elusive, unforgettable recipes that might otherwise be lost to time.</p>
+                </div>
+    
+                <div class="description-item">
+                    <h2>Recreating Global Flavors</h2>
+                    <p>Ever traveled overseas and tasted something extraordinary? That unique dish from a hidden gem of a restaurant? FoodBounties helps you recreate those flavors, bringing your culinary adventures home.</p>
+                </div>
+    
+                <div class="description-item">
+                    <h2>Reviving Lost Recipes</h2>
+                    <p>When your favorite local spot closes its doors or when dining out becomes a luxury, FoodBounties steps in. We foster healthy competition to uncover the best recreations of beloved dishes, making great food accessible to all.</p>
+                </div>
+    
+                <div class="description-item">
+                    <h2>Rewards for Culinary Excellence</h2>
+                    <p>Winners don't just get bragging rights – they receive a coveted FoodBounties winner's apron and a spot in our annual cookbook. Plus, after covering publishing costs, all profits from book sales are shared equally among featured recipe creators.</p>
+                </div>
+    
+                <div class="description-item">
+                    <h2>Community-Driven Gastronomy</h2>
+                    <p>We encourage food enthusiasts and content creators to engage with ongoing contests. Try the recipes, share your experiences, and vote fairly. Your participation ensures the cream truly rises to the top!</p>
+                </div>
+    
+                <div class="description-item">
+                    <h2>Recognizing Passionate Reviewers</h2>
+                    <p>It's not just about creating recipes – it's about enjoying them too! We offer special prizes for the most insightful and consistent reviewers who share their experiences of cooking these recipes for family and friends.</p>
+                </div>
+            </div>
+    
+            <p class="description-summary">Join FoodBounties to compete, win bounties, and share your love of good food with the world. Together, let's create a positive, engaging culinary community that celebrates the joy of cooking and eating!</p>
+    
+            <a href="#contests" class="cta-button">Start Your Culinary Journey Today</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-links">
+                <a href="#about">About Us</a>
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook">📘</a>
+                <a href="#" aria-label="Instagram">📷</a>
+                <a href="#" aria-label="Twitter">🐦</a>
+                <a href="#" aria-label="YouTube">▶️</a>
+            </div>
+            <p>&copy; 2024 FoodBounties.com. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
